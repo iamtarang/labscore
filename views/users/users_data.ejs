@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs') %>
+
+    <body class="sb-nav-fixed">
+
+        <%- include('../partials/header.ejs') %>
+            <div id="layoutSidenav">
+                <%- include('../partials/navbar.ejs') %>
+                    <div id="layoutSidenav_content">
+                        <main>
+                            <div class="container-fluid px-4">
+                                <h1 class="mt-4">Users Table</h1>
+                                <ol class="breadcrumb mb-4">
+                                    <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                                </ol>
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                <i class="fas fa-table me-1"></i>
+                                                <span>Users Datatable</span>
+                                            </span>
+                                            <span>
+                                                <a href="/users/adduser" class="btn btn-primary btn-sm" id="add-user"><i
+                                                        class="fas fa-plus"></i>
+                                                    Add new</i></a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <table id="datatablesSimple">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Username</th>
+                                                    <th>Role</th>
+                                                    <th>First Name</th>
+                                                    <th>Middle Name</th>
+                                                    <th>Last Name</th>
+                                                    <th>Email</th>
+                                                    <th>Password</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <% users.forEach(user=> { %>
+                                                        <td>
+                                                            <%= user.id %>
+                                                        </td>
+                                                        <td>
+                                                            <%= user.username %>
+                                                        </td>
+                                                        <td>
+                                                            <%= user.role %>
+                                                        </td>
+                                                        <td>
+                                                            <%= user.fname %>
+                                                        </td>
+                                                        <td>
+                                                            <%= user.mname %>
+                                                        </td>
+                                                        <td>
+                                                            <%= user.lname %>
+                                                        </td>
+                                                        <td>
+                                                            <%= user.user_email %>
+                                                        </td>
+                                                        <td>
+                                                            <%= user.password %>
+                                                        </td>
+                                                        <td>
+                                                            <div class="btn-group">
+                                                                <a href="/users/editUser/<%= user.id %>"
+                                                                    class="btn btn-warning btn-sm" id="edit-course">
+                                                                    <i class="fas fa-pen"></i>
+                                                                </a>
+                                                                <button class="btn btn-danger btn-sm delete-user"
+                                                                    userid="<%= user.id %>">
+                                                                    <i class="fas fa-trash"></i>
+                                                                </button>
+                                                            </div>
+                                                        </td>
+                                                </tr>
+                                                <% }) %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </main>
+                        <%- include('../partials/footer.ejs') %>
+                    </div>
+            </div>
+            <%- include('../partials/scripts.ejs') %>
+            
+            <script>
+                $(document).on('click', '.delete-user', function () {
+                    var user_id = $(this).attr('userid');
+                    swal({
+                        title: "Are you sure?",
+                        text: "Your will not be able to recover this imaginary file!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "Yes, delete it!",
+                        closeOnConfirm: false
+                    },
+                        function () {
+                            
+                            deleteUser(user_id);
+                            swal("Success!", "User deleted successfully!", "success")
+                            setTimeout(() => {
+                                window.location.reload();
+                            }, 1000);
+                        });
+                })
+
+
+                function deleteUser(id) {
+                    return fetch('/users/deleteUser', {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-type': 'application/json; charset=UTF-8'
+                        },
+                        body: JSON.stringify({ id }),
+                        mode: "same-origin"
+                    })
+                }
+            </script>
+    </body>
+
+</html>

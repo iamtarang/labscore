@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs') %>
+
+    <body class="sb-nav-fixed">
+
+        <%- include('./partials/header.ejs') %>
+            <div id="layoutSidenav">
+                <%- include('./partials/navbar.ejs') %>
+                    <div id="layoutSidenav_content">
+                        <main>
+                            <div class="container-fluid px-4">
+                                <h1 class="mt-4"><strong>LAB</strong><span class="font-weight-light">SC<span><i
+                                                class="bi bi-check2-circle"></i></span>RE</span></h1>
+                                <ol class="breadcrumb mb-4">
+                                    <li class="breadcrumb-item active"><i>For the department, by the department.</i>
+                                    </li>
+                                </ol>
+                                <div class="row row-cols-1 row-cols-md-2 g-4">
+
+                                    <% if (loggedin_user.role==1) { %>
+                                        <!-- <div class="col-xl-3 col-md-6">
+                            <div class="card bg-warning text-dark mb-4">
+                                <div class="card-body">New Assignment</div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-dark stretched-link" href="create_assignment"><i class="bi bi-plus-circle-fill"></i></a>
+                                    <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
+                                </div>
+                            </div>
+                        </div> -->
+                                        <div class="col-xl-3 col-md-6">
+                                            <div class="card bg-warning text-dark mb-4">
+                                                <div class="card-body">New User</div>
+                                                <div
+                                                    class="card-footer d-flex align-items-center justify-content-between">
+                                                    <a class="small text-dark stretched-link" href="users/adduser"><i
+                                                            class="bi bi-person-plus-fill"></i></a>
+                                                    <div class="small text-dark"><i class="fas fa-angle-right"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-md-6">
+                                            <div class="card bg-warning text-dark mb-4">
+                                                <div class="card-body">Course Table</div>
+                                                <div
+                                                    class="card-footer d-flex align-items-center justify-content-between">
+                                                    <a class="small text-dark stretched-link" href="courses"><i
+                                                            class="bi bi-hourglass-split"></i></a>
+                                                    <div class="small text-dark"><i class="fas fa-angle-right"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-md-6">
+                                            <div class="card bg-warning text-dark mb-4">
+                                                <div class="card-body">Add New Batch</div>
+                                                <div
+                                                    class="card-footer d-flex align-items-center justify-content-between">
+                                                    <a class="small text-dark stretched-link" href="excel"><i
+                                                            class="bi bi-hourglass-split"></i></a>
+                                                    <div class="small text-dark"><i class="fas fa-angle-right"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-md-6">
+                                            <div class="card bg-warning text-dark mb-4">
+                                                <div class="card-body">User Table</div>
+                                                <div
+                                                    class="card-footer d-flex align-items-center justify-content-between">
+                                                    <a class="small text-dark stretched-link" href="users"><i
+                                                            class="bi bi-table"></i></a>
+                                                    <div class="small text-dark"><i class="fas fa-angle-right"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% } %>
+
+                                            <% if (loggedin_user.role==2) { %>
+                                                <div class="col-xl-3 col-md-6">
+                                                    <div class="card bg-warning text-dark mb-4">
+                                                        <div class="card-body">New Assignment</div>
+                                                        <div
+                                                            class="card-footer d-flex align-items-center justify-content-between">
+                                                            <a class="small text-dark stretched-link"
+                                                                href="assignments/createAssignment"><i
+                                                                    class="bi bi-plus-circle-fill"></i></a>
+                                                            <div class="small text-dark"><i
+                                                                    class="fas fa-angle-right"></i></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-6">
+                                                    <div class="card bg-warning text-dark mb-4">
+                                                        <div class="card-body">Assignment Data</div>
+                                                        <div
+                                                            class="card-footer d-flex align-items-center justify-content-between">
+                                                            <a class="small text-dark stretched-link"
+                                                                href="users/adduser"><i
+                                                                    class="bi bi-hourglass-split"></i></a>
+                                                            <div class="small text-dark"><i
+                                                                    class="fas fa-angle-right"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-6">
+                                                    <div class="card bg-warning text-dark mb-4">
+                                                        <div class="card-body">Student Submission</div>
+                                                        <div
+                                                            class="card-footer d-flex align-items-center justify-content-between">
+                                                            <a class="small text-dark stretched-link" href="courses"><i
+                                                                    class="fas fa-list"></i></a>
+                                                            <div class="small text-dark"><i
+                                                                    class="fas fa-angle-right"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-6">
+                                                    <div class="card bg-warning text-dark mb-4">
+                                                        <div class="card-body">Grading Table</div>
+                                                        <div
+                                                            class="card-footer d-flex align-items-center justify-content-between">
+                                                            <a class="small text-dark stretched-link" href="excel"><i
+                                                                    class="fas fa-list"></i></a>
+                                                            <div class="small text-dark"><i
+                                                                    class="fas fa-angle-right"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <% } %>
+                                                <% if (loggedin_user.role==3) { %>
+                                                    <div class="col-xl-3 col-md-6">
+                                                        <div class="card bg-warning text-dark mb-4">
+                                                            <div class="card-body">New Assignments</div>
+                                                            <div
+                                                                class="card-footer d-flex align-items-center justify-content-between">
+                                                                <a class="small text-dark stretched-link"
+                                                                    href="studentAssignments"><i
+                                                                        class="bi bi-plus-circle-fill"></i></a>
+                                                                <div class="small text-dark"><i
+                                                                        class="fas fa-angle-right"></i></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-3 col-md-6">
+                                                        <div class="card bg-warning text-dark mb-4">
+                                                            <div class="card-body">Submitted Assignments</div>
+                                                            <div
+                                                                class="card-footer d-flex align-items-center justify-content-between">
+                                                                <a class="small text-dark stretched-link"
+                                                                    href="studentAssignments/submittedAssignment"><i
+                                                                        class="bi bi-hourglass-split"></i></a>
+                                                                <div class="small text-dark"><i
+                                                                        class="fas fa-angle-right"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+                                </div>
+                            </div>
+                        </main>
+                        <%- include('./partials/footer.ejs') %>
+                    </div>
+            </div>
+            <%- include('./partials/scripts.ejs') %>
+    </body>
+
+</html>

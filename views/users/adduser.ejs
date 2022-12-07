@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs') %>
+
+    <body class="sb-nav-fixed">
+
+        <%- include('../partials/header.ejs') %>
+            <div id="layoutSidenav">
+                <%- include('../partials/navbar.ejs') %>
+                    <div id="layoutSidenav_content">
+                        <main>
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-7">
+                                        <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                            <div class="card-header bg-warning">
+                                                <h3 class="text-center my-4"><strong>Enter User Data</strong></h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <form action="/users/userData" method="POST">
+                                                    <div>
+                                                        <div class="form-floating mb-3">
+                                                            <input class="form-control" id="inputPRN" type="text"
+                                                                placeholder="Your PRN" />
+                                                            <label for="inputPRN">PRN/ID*</label>
+                                                        </div>
+                                                        <label for="semester">Select Role*</label>
+                                                        <div class="dropdown">
+                                                            <select class="form-control mb-3" id="role" name="role">
+                                                                <% roles.forEach(role=> { %>
+                                                                    <option value="<%= role.role_id %>">
+                                                                        <%= role.role_name %>
+                                                                    </option>
+                                                                    <% }) %>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-floating mb-3 mb-md-3">
+                                                            <input class="form-control" id="inputFirstName" type="text"
+                                                                placeholder="Enter your first name" />
+                                                            <label for="inputFirstName">First name*</label>
+                                                        </div>
+                                                        <div class="form-floating mb-3 mb-md-3">
+                                                            <input class="form-control" id="inputMidName" type="text"
+                                                                placeholder="Enter your middle name" />
+                                                            <label for="inputLastName">Middle name</label>
+                                                        </div>
+
+                                                        <div class="form-floating mb-3 mb-md-3">
+                                                            <input class="form-control" id="inputLastName" type="text"
+                                                                placeholder="Enter your last name" />
+                                                            <label for="inputLastName">Last name*</label>
+                                                        </div>
+                                                        <div>
+                                                            <div class="form-floating mb-3">
+                                                                <input class="form-control" id="inputEmail" type="email"
+                                                                    placeholder="Enter the email" />
+                                                                <label for="inputEmail">Email*</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center mt-4 mb-2">
+                                                        <button type="submit"
+                                                            class="btn btn-warning btn-block text-black">Enter
+                                                            Data</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                        </main>
+                        <%- include('../partials/footer.ejs') %>
+                    </div>
+            </div>
+            <%- include('../partials/scripts.ejs') %>
+    </body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs') %>
+
+    <body class="sb-nav-fixed">
+
+        <%- include('../partials/header.ejs') %>
+            <div id="layoutSidenav">
+                <%- include('../partials/navbar.ejs') %>
+                    <div id="layoutSidenav_content">
+                        <main>
+
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-7">
+                                        <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                            <div class="card-header bg-warning">
+                                                <h3 class="text-center my-3"><strong>Add New Student Data</strong></h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <form action="/excel/uploadExcel"
+                                                    enctype="multipart/form-data" method="post">
+                                                    <div class="form-floating mb-3">
+                                                        <div class="row mb-6 m-auto">
+
+
+                                                            <!-- File Uploading -->
+                                                            <div class="file-upload">
+                                                                <label for="formFileLg" class="form-label">Upload Excel
+                                                                    File</label>
+                                                                <input class="form-control form-control-lg"
+                                                                    name="import-excel" type="file"
+                                                                    accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="mt-4 mb-0">
+                                                            <div class="d-grid"><button
+                                                                    class="btn btn-warning btn-block" type="submit"
+                                                                    value="store">Upload</button></div>
+                                                        </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </main>
+                        <%- include('../partials/footer.ejs') %>
+                    </div>
+            </div>
+            <%- include('../partials/scripts.ejs') %>
+    </body>
+
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs') %>
+
+    <body class="sb-nav-fixed">
+
+        <%- include('../partials/header.ejs') %>
+            <div id="layoutSidenav">
+                <%- include('../partials/navbar.ejs') %>
+                    <div id="layoutSidenav_content">
+                        <main>
+                            <div class="container">
+                                <% if (loggedin_user.role==2) { %>
+                                    <div class="row justify-content-center">
+                                        <div class="col-lg-7">
+                                            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                                <div class="card-header bg-warning">
+                                                    <h3 class="text-center my-3"><strong>Upload New Assignment</strong>
+                                                    </h3>
+                                                </div>
+                                                <div class="card-body">
+                                                    <form role="form" action="/assignments/newAssignment"
+                                                        enctype="multipart/form-data" method="post">
+                                                        <div class="form-floating mb-3">
+                                                            <div class="row mb-6 m-auto">
+
+                                                                <label for="Name">Name</label>
+                                                                <input class="form-control mb-3 fileName" name="name"
+                                                                    type="text" />
+
+                                                                <label for="courses">Select Course</label>
+                                                                <select class="form-control mb-3 select-picker"
+                                                                    id="courses" name="course">
+                                                                    <option selected disabled>Select</option>
+                                                                    <option value="BCA" name="bca">BCA</option>
+                                                                    <option value="MscIT" name="mscit">MscIT</option>
+                                                                </select>
+
+                                                                <label for="semester">Select Semester</label>
+                                                                <select class="form-control mb-3" id="semester"
+                                                                    name="sem">
+                                                                    <% semesters.forEach(semester=> { %>
+                                                                        <option value="<%= semester.name %>">
+                                                                            <%= semester.name %>
+                                                                        </option>
+                                                                        <% }) %>
+                                                                </select>
+
+                                                                <label for="subject">Select Subject</label>
+                                                                <select class="form-control" id="subject" name="subject"
+                                                                    placeholder="Select Subject">
+                                                                    <% courses.forEach(course=> { %>
+                                                                        <option value="<%= course.subject_name %>">
+                                                                            <%= course.subject_name %>
+                                                                        </option>
+                                                                        <% }) %>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <!-- DateTime Picker -->
+                                                        <div class="row">
+                                                            <div class="col-sm-6 mt-2">
+                                                                <label for="datetimepicker1Input" class="form-label">Set
+                                                                    due Date</label>
+                                                                <div class="input-group" id="datetimepicker1"
+                                                                    data-td-target-input="nearest"
+                                                                    data-td-target-toggle="nearest">
+                                                                    <input id="datetimepicker1Input" type="date"
+                                                                        value="#datetimepicker1" name="due_date"
+                                                                        class="form-control"
+                                                                        data-td-target="#datetimepicker1" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-sm-6 mt-2">
+                                                                <label for="datetimepicker1Input" class="form-label">Set
+                                                                    due Time</label>
+                                                                <div class="input-group" id="datetimepicker1"
+                                                                    data-td-target-input="nearest"
+                                                                    data-td-target-toggle="nearest">
+                                                                    <input id="datetimepicker1Input" type="time"
+                                                                        class="form-control" name="due_time"
+                                                                        data-td-target="#datetimepicker1" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- File Uploading -->
+                                                        <div class="file-upload mt-3">
+                                                            <label for="formFileLg" class="form-label">Upload
+                                                                Assignment</label>
+                                                            <input class="form-control form-control-lg" accept=""
+                                                                name="profile" type="file" />
+                                                        </div>
+                                                        <!-- <label for="uploadFile" name="profile" class="form-label fileName"></label> -->
+                                                        <div class="d-grid">
+                                                            <button class="btn btn-warning btn-lg mt-3"
+                                                                type="submit">Assign</button>
+                                                        </div>
+                                                </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% } else { %>
+                                        <%- include('../partials/accessDenied.ejs') %>
+                                            <% } %>
+                            </div>
+                    </div>
+                    </main>
+                    <%- include('../partials/footer.ejs') %>
+            </div>
+            </div>
+            <%- include('../partials/scripts.ejs') %>
+                <!-- <script>
+                $(document).ready(function(){
+                    $('input[type="file"]').change(function(e){
+                        var fileName = e.target.files[0].name;
+                        console.log(fileName);
+                    });
+                });
+            </script> -->
+                <!-- <script>
+                    $(function () {
+                        $("#uploadFile").change(function (event) {
+                            var x = (event.target.files[0].name);
+                            $(".fileName").text(x);
+                        });
+                    })
+                </script> -->
+    </body>
+
+</html>

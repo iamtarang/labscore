@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs') %>
+
+    <body class="sb-nav-fixed">
+        <%- include('./partials/header.ejs') %>
+            <div id="layoutSidenav">
+                <%- include('./partials/navbar.ejs') %>
+                    <div id="layoutSidenav_content">
+                        <main>
+                            <div class="container-fluid px-4">
+                                <h1 class="mt-4">
+                                    <%= locals.title %>
+                                </h1>
+                                <ol class="breadcrumb mb-4">
+                                    <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                                </ol>
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                <i class="fas fa-table me-1"></i>
+                                                <span>Submitted Assignments</span>
+                                            </span>
+                                            <!-- <span>
+                                                <a href="assignments/createAssignment" class="btn btn-primary btn-sm"
+                                                    id="add-assignment"><i class="fas fa-plus"></i>
+                                                    Add new</i></a>
+                                            </span> -->
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-bordered" id="datatablesSimple">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Username</th>
+                                                        <th>Subject</th>
+                                                        <th>Filename</th>
+                                                        <th>Submitted Date nad Time</th>
+                                                        <!-- <th>Due Date</th>
+                                                        <th>Due Time</th>
+                                                        <th>Action</th> -->
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% assignments.forEach(assignment=> { %>
+                                                        <tr>
+                                                            <td>
+                                                                <%= assignment.id %>
+                                                            </td>
+                                                            <td>
+                                                                <%= assignment.username %>
+                                                            </td>
+                                                            <td>
+                                                                <%= assignment.subject %>
+                                                            </td>
+                                                            <td>
+                                                                <a href="/uploads/<%=assignment.answer%>" target="_blank"> <%=assignment.answer%> </a>
+                                                            </td>
+                                                            <td>
+                                                                <%= assignment.due_datetime %>
+                                                            </td>
+                                                            <!-- <td>
+                                                                <div class="uploadAns">
+                                                                    <form action="/studentAssignments/newAssignment" method="post">
+                                                                    <input type="file" name="answer" id="" />
+                                                                    <button
+                                                                        class="btn btn-danger btn-sm ans-assignment" 
+                                                                        assignmentid="<%= assignment.id %>" type="submit">
+                                                                        Upload
+                                                                        <i class="fas fa-upload"></i>
+                                                                    </button>
+                                                                </form>
+                                                                </div>
+                                                            </td> -->
+                                                        </tr>
+                                                        <% }) %>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </main>
+                        <%- include('./partials/footer.ejs') %>
+                    </div>
+            </div>
+            <%- include('./partials/scripts.ejs') %>
+<!-- 
+                <script>
+                    $(document).on('click', '.delete-assignment', function () {
+                        var id = $(this).attr('assignmentid');
+                        swal({
+                            title: "Are you sure?",
+                            text: "Your will not be able to recover this imaginary file!",
+                            type: "warning",
+                            showCancelButton: true,
+                            confirmButtonClass: "btn-danger",
+                            confirmButtonText: "Yes, delete it!",
+                            closeOnConfirm: false
+                        },
+                            function () {
+
+                                deleteassignment(id);
+                                swal("Success!", "Assignment deleted successfully!", "success")
+                                setTimeout(() => {
+                                    window.location.reload();
+                                }, 1000);
+                            });
+                    })
+
+
+                    function deleteassignment(assignment_id) {
+                        return fetch('/assignments/deleteassignment', {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-type': 'application/json; charset=UTF-8'
+                            },
+                            body: JSON.stringify({ assignment_id }),
+                            mode: "same-origin"
+                        })
+                    }
+                </script> -->
+    </body>
+
+</html>
